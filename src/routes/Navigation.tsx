@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route, NavLink, Navigate } from "react-router-dom"
+import { BrowserRouter, Switch, Route, NavLink, Redirect } from "react-router-dom"
+import ShoppingPage from "../02-component-patterns/pages/ShoppingPage"
 import logo from '../logo.svg'
 
 const Navigation = () => {
@@ -10,16 +11,16 @@ const Navigation = () => {
                 <ul>
                     <li>
                         <NavLink 
-                            to='/home' 
-                            className={ ({ isActive }) => isActive ? 'nav-active' : ''} 
+                            to='/' 
+                            activeClassName='nav-active'
                         >
-                            Home
+                            Shopping
                         </NavLink>
                     </li>
                     <li>
                         <NavLink 
                             to='/about' 
-                            className={ ({ isActive }) => isActive ? 'nav-active' : ''} 
+                            activeClassName='nav-active'
                         >
                             About
                         </NavLink>
@@ -27,31 +28,25 @@ const Navigation = () => {
                     <li>
                         <NavLink 
                             to='/users' 
-                            className={ ({ isActive }) => isActive ? 'nav-active' : ''} 
+                            activeClassName='nav-active'
                         >
                             Users
                         </NavLink>
                     </li>
                 </ul>
             </nav>
-            <Routes>
-                <Route 
-                    path="about" 
-                    element={<h1>About Page</h1>} 
-                />
-                <Route 
-                    path="users" 
-                    element={<h1>Users Page</h1>} 
-                />
-                <Route 
-                    path="home" 
-                    element={<h1>Home Page</h1>} 
-                />
-                <Route 
-                    path="/*" 
-                    element={<Navigate to='/home' replace />} 
-                />
-            </Routes>
+            <Switch>
+                <Route exact path="/about">
+                    <h1>About Page</h1>
+                </Route>
+                <Route exact path="/users">
+                    <h1>Users Page</h1>
+                </Route>
+                <Route exact path="" >
+                    <ShoppingPage />
+                </Route>
+                <Redirect to={`/`}/>
+            </Switch>
         </div>
     </BrowserRouter>
   )
