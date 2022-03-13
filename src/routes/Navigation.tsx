@@ -30,7 +30,6 @@ const Navigation = () => {
             {routes.map(({ path, Component }) => (
               <Route key={path} path={path} render={(props) => <Component />} />
             ))}
-
             <Redirect to={routes[0].path} />
           </Switch>
         </div>
