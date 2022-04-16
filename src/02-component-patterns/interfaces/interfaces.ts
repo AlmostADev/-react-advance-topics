@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { CSSProperties, ReactElement } from 'react';
 import { increasedBy } from '../types/types';
 
 export interface ProductContextProps {
@@ -8,8 +8,10 @@ export interface ProductContextProps {
 }
 
 export interface ProductCardProps {
-    product: Product,
-    children?: ReactElement | ReactElement[]
+    product: Product;
+    children?: ReactElement | ReactElement[];
+    className?: string;
+    style?: CSSProperties
 }
 
 export interface Product {
@@ -20,15 +22,24 @@ export interface Product {
 
 export interface ProductImageProps {
     img?: string;
+    className?: string;
+    style?: CSSProperties;
 }
 
 export interface ProductTitleProps {
     title?: string;
+    className?: string;
+    style?: CSSProperties;
+}
+
+export interface ProductButtonsProps {
+    className?: string;
+    style?: CSSProperties;
 }
 
 export interface ProductCardHOCProps {
-    ({ children, product}: ProductCardProps): JSX.Element,
-    Title: ({ title }: ProductTitleProps) => JSX.Element,
-    Image: ({ img }: ProductImageProps) => JSX.Element,
-    Buttons: () => JSX.Element
+    ({ children, product }: ProductCardProps): JSX.Element,
+    Title: (Props: ProductTitleProps) => JSX.Element,
+    Image: (Props: ProductImageProps) => JSX.Element,
+    Buttons: (Props: ProductButtonsProps) => JSX.Element
 }
