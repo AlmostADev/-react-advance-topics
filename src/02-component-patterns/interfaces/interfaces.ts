@@ -1,6 +1,11 @@
 import { CSSProperties, ReactElement } from 'react';
 import { increasedBy } from '../types/types';
 
+export interface onChangeArgs {
+    product: Product;
+    count: number;
+}
+
 export interface ProductContextProps {
     counter: number;
     increaseBy: increasedBy;
@@ -11,13 +16,19 @@ export interface ProductCardProps {
     product: Product;
     children?: ReactElement | ReactElement[];
     className?: string;
-    style?: CSSProperties
+    style?: CSSProperties;
+    onChange?: (args: onChangeArgs) => void;
+    value?: number;
 }
 
 export interface Product {
     id: string;
     title: string;
     img?: string;
+}
+
+export interface ProductInCart extends Product {
+    count: number;
 }
 
 export interface ProductImageProps {
